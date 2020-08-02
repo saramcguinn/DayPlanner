@@ -29,17 +29,18 @@ var userInput;
 var rowArray = document.querySelectorAll(".row");
 // console.log (rowArray);
 
-function renderContent() {
-    content = localStorage.getItem("content");
-    $(this).text(content);
-}
+// function renderContent() {
+//     content = localStorage.getItem("content");
+//     $(this).text(content);
+// }
 
 
 $(".saveBtn").on("click", function(event){
     event.preventDefault();
     userInput = $("textarea").val();
     localStorage.setItem("content", userInput);
-    renderContent();
+    console.log(localStorage.getItem("content"));
+    // renderContent();
 })
 
 // $(".row").on("click", function(event){

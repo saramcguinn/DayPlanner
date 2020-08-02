@@ -15,10 +15,21 @@ textarea{
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-image: url(Assets/mike-enerio-yPbBYE1pkHo-unsplash.jpg);
+  background-size: cover;
+  background-color: blueviolet;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+}
+
+#currentDay {
+  font-weight: bolder;
+  font-size: 25pt;
+  color: black;
+}
+
+#headerDiv {
 }
 
 .container {
@@ -36,12 +47,12 @@ textarea{
 
 .row {
   white-space: pre-wrap;
-  height: 80px;
   border-top: 1px solid white;;
 }
 
 .hour {
-  background-color: #ffffff;
+  text-align: left;
+  background-color: #E8DAEF;
   color: #000000;
   border-top: 1px dashed #000000;
 }
@@ -52,20 +63,20 @@ textarea{
 }
 
 .present {
-  background-color: #ff6961;
-  color: white;
+  background-color: #FCF3CF;
+  color: black;
 }
 
 .future {
-  background-color: #77dd77;
-  color: white;
+  background-color: #D5F5E3;
+  color: black;
 }
 
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06AED5;
+  background-color: #8E44AD;
   color: white;
 }
 
