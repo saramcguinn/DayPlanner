@@ -1,54 +1,74 @@
-//show current date
-$("#currentDay").text(moment().format("LL"));
+$(document).ready(function () {
 
+    //show current date in jumbotron header
+    $("#currentDay").text(moment().format("LL"));
 
-//create array of all textarea elements
-//get the current hour
-//compare current hour with hour (id) of textarea
-//set textarea class to past, future, or present, which changes color of textarea via css
-var textareaArray = document.querySelectorAll("textarea");
-var currentHour = moment().hour();
+    //render localStorage input to textareas on page
+    renderTextfromLocalStorage();
 
-for (var i=0; i<textareaArray.length; i++) {
-    thisTextarea = textareaArray[i];
-    hour = thisTextarea.getAttribute("id");
-    if(currentHour > hour) {
-        thisTextarea.classList.add("past");
-    }else if (currentHour < hour) {
-        thisTextarea.classList.add("future");
-    }else {
-        thisTextarea.classList.add("present");
+    //create array of all textarea elements
+    //get the current hour
+    //compare current hour with hour (id) of textarea
+    //set textarea class to past, future, or present, which changes color of textarea via css
+    function checkTime() {
+        var currentHour = moment().hour();
+        $(".description").each(function () {
+            var hour = parseInt($(this).attr("id"));
+            if (currentHour > hour) {
+                $(this).addClass("past");
+                $(this).attr("disabled", true);
+                $(this).removeClass("future");
+                $(this).removeClass("present");
+                var saveButton = $(this).siblings(".saveBtn");
+                saveButton.addClass("disabled");
+                saveButton.attr("disabled", true);
+                saveButton.children("i").removeClass("fa-save");
+                saveButton.children("i").addClass("fa-ban");
+            } else if (currentHour < hour) {
+                $(this).addClass("future");
+                $(this).attr("disabled", false);
+                $(this).removeClass("past");
+                $(this).removeClass("present");
+                var saveButton = $(this).siblings(".saveBtn");
+                saveButton.removeClass("disabled");
+                saveButton.attr("disabled", false);
+                saveButton.children("i").removeClass("fa-ban");
+                saveButton.children("i").addClass("fa-save");
+            } else {
+                $(this).addClass("present");
+                $(this).attr("disabled", false);
+                $(this).removeClass("future");
+                $(this).removeClass("past");
+                var saveButton = $(this).siblings(".saveBtn");
+                saveButton.removeClass("disabled");
+                saveButton.attr("disabled", false);
+                saveButton.children("i").removeClass("fa-ban");
+                saveButton.children("i").addClass("fa-save");
+            }
+        })
     }
-}
 
+    function renderTextfromLocalStorage() {
+        $("textarea").each(function () {
+            var info = $(this).attr("id");
+            var retrievedContent = localStorage.getItem(info);
+            $(this).text(retrievedContent);
+        })
+    }
 
-//when saveButton is clicked, textcontent saves to local storage
-var content;
-var userInput;
+    //execute checkTime when page loads
+    checkTime();
 
-var rowArray = document.querySelectorAll(".row");
-// console.log (rowArray);
+    //execute checkTime every minute so that the textarea color will change as time passes, even if the user does not refresh page
+    var myVar = setInterval(checkTime, 60000);
 
-// function renderContent() {
-//     content = localStorage.getItem("content");
-//     $(this).text(content);
-// }
+    //when saveButton is clicked, textarea input saves to local storage
+    $(".saveBtn").on("click", function (event) {
+        event.preventDefault();
+        var userInput = $(this).siblings("textarea").val();
+        key = $(this).siblings("textarea").attr("id");
+        localStorage.setItem(key, userInput);
+        renderTextfromLocalStorage();
+    });
 
-
-$(".saveBtn").on("click", function(event){
-    event.preventDefault();
-    userInput = $("textarea").val();
-    localStorage.setItem("content", userInput);
-    console.log(localStorage.getItem("content"));
-    // renderContent();
 })
-
-// $(".row").on("click", function(event){
-//     var target = $(event.target);
-//     if (target.is("button")) {
-//         event.preventDefault();
-//         userInput = $(this).val();
-//         console.log(userInput);
-//         // console.log("save button clicked");
-//     }
-// });

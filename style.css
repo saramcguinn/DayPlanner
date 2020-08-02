@@ -29,9 +29,6 @@ textarea{
   color: black;
 }
 
-#headerDiv {
-}
-
 .container {
   margin-bottom: 50px;
 }
@@ -80,7 +77,17 @@ textarea{
   color: white;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
+.saveBtn:hover .fa-save {
+  /* color: black; */
+  font-size: 25px;
   transition: all .3s ease-in-out;
 }
+
+.saveBtn:active .fa-save {
+  color: black;
+}
+
+.fa-save, .fa-ban {
+  color: white;
+}
+
