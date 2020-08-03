@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-textarea{
+textarea {
   background: transparent;
   border: none;
   resize: none;
@@ -13,14 +13,30 @@ textarea{
   padding: 10px;
 }
 
+header {
+  z-index: 10;
+}
+
 .jumbotron {
   text-align: center;
+  padding: 10px;
   background-image: url(Assets/mike-enerio-yPbBYE1pkHo-unsplash.jpg);
   background-size: cover;
   background-color: blueviolet;
+  /* Background effect based on https://1stwebdesigner.com/15-css-background-effects/,
+  designed by Manuel Pinto */
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 190% 190%;
+	animation: gradient 30s ease-in-out infinite;
   color: black;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 20px solid black;
+}
+
+@keyframes gradient {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
 }
 
 #currentDay {
@@ -78,7 +94,6 @@ textarea{
 }
 
 .saveBtn:hover .fa-save {
-  /* color: black; */
   font-size: 25px;
   transition: all .3s ease-in-out;
 }
@@ -87,7 +102,20 @@ textarea{
   color: black;
 }
 
-.fa-save, .fa-ban {
+.fa-save, .fa-calendar-check {
   color: white;
 }
 
+.fa-calendar-check {
+  font-size: 25px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .container {
+  padding-top: 250px;
+}

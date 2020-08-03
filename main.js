@@ -23,7 +23,7 @@ $(document).ready(function () {
                 saveButton.addClass("disabled");
                 saveButton.attr("disabled", true);
                 saveButton.children("i").removeClass("fa-save");
-                saveButton.children("i").addClass("fa-ban");
+                saveButton.children("i").addClass("fa-calendar-check");
             } else if (currentHour < hour) {
                 $(this).addClass("future");
                 $(this).attr("disabled", false);
@@ -32,7 +32,7 @@ $(document).ready(function () {
                 var saveButton = $(this).siblings(".saveBtn");
                 saveButton.removeClass("disabled");
                 saveButton.attr("disabled", false);
-                saveButton.children("i").removeClass("fa-ban");
+                saveButton.children("i").removeClass("fa-calendar-check");
                 saveButton.children("i").addClass("fa-save");
             } else {
                 $(this).addClass("present");
@@ -42,7 +42,7 @@ $(document).ready(function () {
                 var saveButton = $(this).siblings(".saveBtn");
                 saveButton.removeClass("disabled");
                 saveButton.attr("disabled", false);
-                saveButton.children("i").removeClass("fa-ban");
+                saveButton.children("i").removeClass("fa-calendar-check");
                 saveButton.children("i").addClass("fa-save");
             }
         })
@@ -70,5 +70,19 @@ $(document).ready(function () {
         localStorage.setItem(key, userInput);
         renderTextfromLocalStorage();
     });
+
+    // Sticky header code source: https://www.w3schools.com/howto/howto_js_sticky_header.asp & https://stackoverflow.com/questions/19158559/how-to-fix-a-header-on-scroll
+    // When the user scrolls the page, execute makeSticky function
+    $(window).scroll(makeSticky);
+    // Get the offset position of the navbar
+    var offset = $("header").offset().top;
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function makeSticky() {
+        if ($(window).scrollTop() > offset) {
+            $("header").addClass("sticky");
+        } else {
+            $("header").removeClass("sticky");
+        }
+    }
 
 })
