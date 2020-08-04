@@ -4,7 +4,8 @@ This is a one-day planner in which the user logs tasks/notes by hour.
 Using the moment.js library, the planner displays the current date, and the time blocks dynamically change color based on whether the time is in the past, present, or future. The text that the user inputs into the time blocks is saved in local storage so that the content persists even after a page refresh.
 
 URL: https://saramcguinn.github.io/DayPlanner/
-Gitlab repository: https://github.com/saramcguinn/DayPlanner
+
+Github repository: https://github.com/saramcguinn/DayPlanner
 
 <image src="Assets/DayPlannerScreenshot.jpg" width=600>
 
