@@ -1,16 +1,12 @@
+//Code will run only after document is ready
 $(document).ready(function () {
 
-    //show current date in jumbotron header
-    $("#currentDay").text(moment().format("LL"));
-
-    //render localStorage input to textareas on page
-    renderTextfromLocalStorage();
-
-    //create array of all textarea elements
-    //get the current hour
-    //compare current hour with hour (id) of textarea
-    //set textarea class to past, future, or present, which changes color of textarea via css
+    /******************************************************************************************************
+    DEFINE FUNCTIONS
+    ******************************************************************************************************/
+    
     function checkTime() {
+    // Compares current hour with hour (id) of textarea & sets textarea class to past, future, or present, which changes color of textarea via css
         var currentHour = moment().hour();
         $(".description").each(function () {
             var hour = parseInt($(this).attr("id"));
@@ -49,6 +45,7 @@ $(document).ready(function () {
     }
 
     function renderTextfromLocalStorage() {
+    // Renders text to the textareas of page, allows content to persist even after page refresh
         $("textarea").each(function () {
             var info = $(this).attr("id");
             var retrievedContent = localStorage.getItem(info);
@@ -56,13 +53,27 @@ $(document).ready(function () {
         })
     }
 
-    //execute checkTime when page loads
+    /******************************************************************************************************
+    INITIALIZE & UPDATE PAGE
+    ******************************************************************************************************/
+
+    // Show current date in jumbotron header
+    $("#currentDay").text(moment().format("LL"));
+
+    // Render localStorage input to textareas on page
+    renderTextfromLocalStorage();
+
+    // Execute checkTime when page loads
     checkTime();
 
-    //execute checkTime every minute so that the textarea color will change as time passes, even if the user does not refresh page
+    // Execute checkTime every minute so that the textarea color will change as time passes, even if the user does not refresh page
     var myVar = setInterval(checkTime, 60000);
 
-    //when saveButton is clicked, textarea input saves to local storage
+    /******************************************************************************************************
+    ADD EVENT LISTENER TO SAVE BUTTONS
+    ******************************************************************************************************/
+
+    // When saveButton is clicked, textarea input saves to local storage
     $(".saveBtn").on("click", function (event) {
         event.preventDefault();
         var userInput = $(this).siblings("textarea").val();
@@ -71,12 +82,18 @@ $(document).ready(function () {
         renderTextfromLocalStorage();
     });
 
-    // Sticky header code source: https://www.w3schools.com/howto/howto_js_sticky_header.asp & https://stackoverflow.com/questions/19158559/how-to-fix-a-header-on-scroll
-    // When the user scrolls the page, execute makeSticky function
+    /******************************************************************************************************
+    MAKE STICKY HEADER
+    ******************************************************************************************************/
+    // Sticky header code sources: https://www.w3schools.com/howto/howto_js_sticky_header.asp & https://stackoverflow.com/questions/19158559/how-to-fix-a-header-on-scroll
+    
+    // Execute makeSticky function when user scrolls
     $(window).scroll(makeSticky);
+
     // Get the offset position of the navbar
     var offset = $("header").offset().top;
-    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+
+    // Add .sticky class to the header when user reaches its scroll position & remove .sticky when user leaves the scroll position.
     function makeSticky() {
         if ($(window).scrollTop() > offset) {
             $("header").addClass("sticky");

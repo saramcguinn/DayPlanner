@@ -1,3 +1,7 @@
+/******************************************************************************************
+GENERAL
+******************************************************************************************/
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -13,8 +17,22 @@ textarea {
   padding: 10px;
 }
 
+/******************************************************************************************
+HEADER
+******************************************************************************************/
+
 header {
   z-index: 10;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .container {
+  padding-top: 250px;
 }
 
 .jumbotron {
@@ -23,8 +41,7 @@ header {
   background-image: url(Assets/mike-enerio-yPbBYE1pkHo-unsplash.jpg);
   background-size: cover;
   background-color: blueviolet;
-  /* Background effect based on https://1stwebdesigner.com/15-css-background-effects/,
-  designed by Manuel Pinto */
+  /* Background effect based on https://1stwebdesigner.com/15-css-background-effects/, designed by Manuel Pinto */
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 190% 190%;
 	animation: gradient 30s ease-in-out infinite;
@@ -44,6 +61,10 @@ header {
   font-size: 25pt;
   color: black;
 }
+
+/******************************************************************************************
+STATIC CLASSES
+******************************************************************************************/
 
 .container {
   margin-bottom: 50px;
@@ -70,20 +91,28 @@ header {
   border-top: 1px dashed #000000;
 }
 
+/******************************************************************************************
+DYNAMIC CLASSES (COLOR-CHANGES)
+******************************************************************************************/
+
 .past {
   background-color: #d3d3d3;
   color: white;
 }
 
 .present {
-  background-color: #FCF3CF;
+  background-color: #F8BBD0;
   color: black;
 }
 
 .future {
-  background-color: #D5F5E3;
+  background-color: #FCF3CF;
   color: black;
 }
+
+/******************************************************************************************
+BUTTON & ICONS
+******************************************************************************************/
 
 .saveBtn {
   border-left: 1px solid black;
@@ -108,14 +137,4 @@ header {
 
 .fa-calendar-check {
   font-size: 25px;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%
-}
-
-.sticky + .container {
-  padding-top: 250px;
 }
